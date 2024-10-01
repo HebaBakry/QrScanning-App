@@ -112,7 +112,7 @@ class QRScannerScreenState extends State<QRScannerScreen> {
         result = scanData;
       });
 
-      // Automatically pause the camera and navigate to the next screen when data is detected
+      //pause the camera and navigate to the next screen when data is detected
       if (result != null && result!.code!.isNotEmpty) {
         _pauseAndNavigate(result!.code!);
       }

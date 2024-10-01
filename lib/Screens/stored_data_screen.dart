@@ -122,11 +122,7 @@ class DataScreenState extends State<DataScreen> {
                             });
                           }
                         }
-            
-                        print("data: $data");
-            
-                        var connectivityResult =
-                        await Connectivity().checkConnectivity();
+                        var connectivityResult = await Connectivity().checkConnectivity();
                         if (connectivityResult[0] == ConnectivityResult.none) {
                           // Save as an unsynced data if offline
                           var unsyncedBox = Hive.box('unsynced_data');
