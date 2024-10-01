@@ -132,9 +132,13 @@ class DataScreenState extends State<DataScreen> {
                           var unsyncedBox = Hive.box('unsynced_data');
                           await unsyncedBox.put(widget.keyValue, jsonEncode(data.toJson()));
                         }
+                        else{
+                          //if already online sync data direct
+                          print('send data to server');
+                        }
             
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('All answers submitted and saved.'),
+                          content: Text('All answers submitted.'),
                         ));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
