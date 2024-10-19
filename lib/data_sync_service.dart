@@ -7,7 +7,6 @@ class DataSyncService {
     Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> result) {
       if (result[0] != ConnectivityResult.none) {
         //Online
-        print("main online");
         syncUnsyncedData();
       }
     });
@@ -16,13 +15,10 @@ class DataSyncService {
   // Sync unsynced data when the device is online
   Future<void> syncUnsyncedData() async {
     var unsyncedBox = Hive.box('unsynced_data');
-    var keys = unsyncedBox.keys;
+    var keys = unsyncedBox.keys; //number of qr codes scanned wen offline
 
-    print("keys ${keys.length}");
     for (var key in keys) {
       var unsyncedQuiz = unsyncedBox.get(key);
-
-      // Sync the data (you can implement your server sync logic here)
       try {
         await _sendDataToServer(unsyncedQuiz);
 
